@@ -75,27 +75,25 @@ builder.Services.AddAutoMapper(
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IProjectTaskService, ProjectTaskService>();
 
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("AllowFrontend",
+//        policy => policy.WithOrigins("http://localhost:3000", "https://tasks-frontend-six.vercel.app/")
+//                         .AllowAnyHeader()
+//                         .AllowAnyMethod()
+//                         .AllowCredentials());
+//});
+
 builder.Services.AddCors(options =>
 {
-    //options.AddPolicy("AllowFrontend",
-    //    policy => policy.WithOrigins("http://localhost:3000", "https://tasks-frontend-six.vercel.app/")
-    //                     .AllowAnyHeader()
-    //                     .AllowAnyMethod()
-    //                     .AllowCredentials());
-
-    builder.Services.AddCors(options =>
-    {
-        options.AddPolicy("AllowAll",
-            policy =>
-            {
-                policy.AllowAnyOrigin()
-                      .AllowAnyHeader()
-                      .AllowAnyMethod();
-            });
-    });
-
+    options.AddPolicy("AllowAll",
+        policy =>
+        {
+            policy.AllowAnyOrigin()
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
 });
-
 
 
 var app = builder.Build();
