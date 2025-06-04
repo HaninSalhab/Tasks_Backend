@@ -1,20 +1,20 @@
-# Use the official .NET SDK image for build
+# Use .NET SDK to build
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /app
+WORKDIR /src
 
-# Copy csproj and restore as distinct layers
-COPY *.csproj ./
+# Copy everything and set working directory to project folder
+COPY . .
+WORKDIR /src/TaskManagement.Backend
+
+# Restore and publish
 RUN dotnet restore
+RUN dotnet publish -c Release -o /app/publish
 
-# Copy everything else and build
-COPY . ./
-RUN dotnet publish -c Release -o out
-
-# Use the ASP.NET runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
+# Use ASP.NET runtime
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
-COPY --from=build /app/out .
+COPY --from=build /app/publish .
 
-# Expose the port your app uses (change if needed)
+# Expose port (adjust if needed)
 EXPOSE 80
-ENTRYPOINT ["dotnet", "TaskManagement.Backend.dll"]
+ENTRYPOINT ["dotnet", "TaskManagement.API.dll"]
