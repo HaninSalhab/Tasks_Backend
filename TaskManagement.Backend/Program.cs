@@ -77,18 +77,30 @@ builder.Services.AddScoped<IProjectTaskService, ProjectTaskService>();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowFrontend",
-        policy => policy.WithOrigins("http://localhost:3000", "https://tasks-frontend-six.vercel.app/")
-                         .AllowAnyHeader()
-                         .AllowAnyMethod()
-                         .AllowCredentials());
+    //options.AddPolicy("AllowFrontend",
+    //    policy => policy.WithOrigins("http://localhost:3000", "https://tasks-frontend-six.vercel.app/")
+    //                     .AllowAnyHeader()
+    //                     .AllowAnyMethod()
+    //                     .AllowCredentials());
+
+    builder.Services.AddCors(options =>
+    {
+        options.AddPolicy("AllowAll",
+            policy =>
+            {
+                policy.AllowAnyOrigin()
+                      .AllowAnyHeader()
+                      .AllowAnyMethod();
+            });
+    });
+
 });
 
 
 
 var app = builder.Build();
 
-app.UseCors("AllowFrontend");
+app.UseCors("AllowAll");
 
 app.UseSwagger();
 app.UseSwaggerUI(c =>
