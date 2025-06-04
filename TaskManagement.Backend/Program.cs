@@ -96,9 +96,9 @@ builder.Services.AddCors(options =>
 });
 
 
+
 var app = builder.Build();
 
-app.UseCors("AllowAll");
 
 app.UseSwagger();
 app.UseSwaggerUI(c =>
@@ -114,6 +114,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseRouting();
+app.UseCors("AllowAll");
 
 
 app.UseHttpsRedirection();
