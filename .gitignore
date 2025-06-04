@@ -1,0 +1,52 @@
+## Ignore build results
+bin/
+obj/
+out/
+[Bb]uild/
+[Ll]og/
+
+## User-specific files
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+## OS-generated files
+.DS_Store
+Thumbs.db
+
+## Visual Studio files
+.vs/
+*.dbmdl
+*.vssscc
+*.cache
+*.pdb
+*.sdf
+*.sqlite
+*.sql
+*.ncb
+
+## NuGet packages
+*.nupkg
+packages/
+*.snupkg
+
+## DotNet CLI
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+## Secrets
+secrets.json
+
+## Environment files
+.env
+
+## Others
+*.log
+*.vspscc
+*.vscode/
+.idea/
