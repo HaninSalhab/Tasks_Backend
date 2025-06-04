@@ -99,6 +99,15 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+if (!app.Environment.IsDevelopment())
+{
+    var port = Environment.GetEnvironmentVariable("PORT") ?? "10000";
+    app.Urls.Add($"http://*:{port}");
+}
+
+app.UseRouting();
+
+
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
