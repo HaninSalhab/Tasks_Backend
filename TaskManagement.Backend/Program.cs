@@ -78,7 +78,7 @@ builder.Services.AddScoped<IProjectTaskService, ProjectTaskService>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",
-        policy => policy.WithOrigins("http://localhost:3000")
+        policy => policy.WithOrigins("http://localhost:3000", "https://tasks-frontend-six.vercel.app/")
                          .AllowAnyHeader()
                          .AllowAnyMethod()
                          .AllowCredentials());
